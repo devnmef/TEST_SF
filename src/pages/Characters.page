@@ -1,0 +1,53 @@
+<apex:page controller="CharacterController" showHeader="false">
+    <script type="text/javascript">
+    	var rowNum = 1;
+    	function incrementRowNum() { rowNum += 1; }
+    	function resetRowNum() { rowNum = 1; } 
+    
+    	var showSaveButton = false;
+    	var showCancelButton = false;
+    </script>
+    
+    <p>Hello {!$User.FirstName}</p>
+    <h1>I Heard you like Disney Characters</h1><br/>
+    <h1>Let me List them for you ;)</h1><br/>
+    <apex:outputPanel id="disneyTable">
+        <apex:form >
+            <apex:pageBlock mode="edit">
+                <!-->If there are characters<!-->
+                <apex:pageBlockTable value="{!characters}" var="listcharacters"
+                                     rendered="{!hasCharacters}" styleClass="tableClass">
+                    <!--><apex:facet name="header">*************</apex:facet>
+					<apex:facet name="footer">*************</apex:facet><!-->
+                  	
+                    <apex:column >
+                        <apex:facet name="header">Name</apex:facet>
+                        <apex:outputField value="{!listcharacters.Nickname__c}"/>
+                    </apex:column>
+                    <apex:column >
+                    	<apex:facet name="header">Animal Name</apex:facet>
+                        <apex:outputField value="{!listcharacters.AnimalFieldName__r.Nickname__c}">
+                            <apex:inlineEditSupport event="ondblClick"
+                                                    showOnEdit="saveButton,cancelButton" />
+                    	</apex:outputField>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Animal Type</apex:facet>
+                        <apex:outputField value="{!listcharacters.AnimalFieldName__r.Type__c}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+                <apex:pageBlockButtons >
+                    <!-- <apex:commandButton id="saveButton" value="Save" action="{!save}" /> -->
+                </apex:pageBlockButtons>
+                <!-->If there are NO characters<!-->
+                <apex:outputText rendered="{!NOT(hasCharacters)}">There are no characters to list :(</apex:outputText>
+            </apex:pageBlock>
+        </apex:form>        
+    </apex:outputPanel>    
+    <apex:form >      
+        <apex:inputField value="{!newCharacter.Nickname__c}"/>
+        <apex:commandButton action="{!addCharacter}" value="Add" onclick="resetRowNum()" rerender="disneyTable" status="status">
+        </apex:commandButton>
+    </apex:form>
+    
+</apex:page>
