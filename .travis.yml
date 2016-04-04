@@ -4,4 +4,6 @@ sudo: false
 branches:
     only:
         - master
+before_script:
+    - chmod a+x ./build/scripts/*
 script: ./build/scripts/releaseScript.sh
