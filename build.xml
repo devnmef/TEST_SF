@@ -10,6 +10,6 @@
     </taskdef>
 
     <target name="deployProd">
-        <sf:deploy testLevel="RunLocalTests" checkOnly="false" username="${sf_sb.user}" password="${sf_sb.pass}" serverurl="${sf_prod.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="../../src/" ignoreWarnings="true" rollbackOnError="true" logType="Debugonly"/>
+        <sf:deploy testLevel="RunLocalTests" checkOnly="false" username="${sf_sb.user}" password="${sf_sb.pass}" serverurl="${sf_prod.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="./src" ignoreWarnings="true" rollbackOnError="true" logType="Debugonly"/>
     </target>
 </project>
