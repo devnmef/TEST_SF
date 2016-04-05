@@ -6,6 +6,7 @@ public class CharacterController
     
     public CharacterController()
     {
+        Boolean thing = true;
         selectCharacters();
         //selectAnimals();
         
