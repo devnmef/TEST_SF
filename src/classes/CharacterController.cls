@@ -3,6 +3,7 @@ public class CharacterController
     public List<Character__c> characters{get; set;}
     public Character__c newCharacter{get; set;}
     public Animal__c knownAnimals{get; set;}
+    public String inconsequential{get;set;}
     
     public CharacterController()
     {
